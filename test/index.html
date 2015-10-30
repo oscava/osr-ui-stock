@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<title>
+			OSR-UI-STOCK
+		</title>
+		<script src="../bower_components/osr-class/lib/index.js"></script>
+		<script src="../lib/index.js"></script>
+		<script src="./data.js"></script>
+	</head>
+	<body>
+		<canvas id="example" height="500" width="800">
+			
+		</canvas>
+	</body>
+	<script>
+		var stage = new Stock(document.getElementById("example"));
+		stage.addPrint(new KLine( stage.context, null, ["low","high","open","close"], { width: 800, height: 500 }));
+		myData.stock.forEach(function(item,index){
+			stage.addData(item);
+		});
+		stage.draw(0);
+	</script>
+</html>

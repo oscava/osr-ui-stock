@@ -1,0 +1,27 @@
+{
+  "name": "osr-ui-stock",
+  "homepage": "https://github.com/oscava/osr-ui-stock",
+  "authors": [
+    "张嘉华 <admin@cavacn.com>"
+  ],
+  "description": "osr,ui,stock,canvas",
+  "main": "lib/index.js",
+  "moduleType": [],
+  "keywords": [
+    "osr",
+    "ui",
+    "stock",
+    "canvas"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "osr-class": "~0.1.7"
+  }
+}
