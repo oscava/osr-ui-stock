@@ -1,0 +1,28 @@
+{
+  "name": "osr-ui-stock",
+  "version": "0.0.1",
+  "description": "osr,ui,stock,canvas",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oscava/osr-ui-stock.git"
+  },
+  "keywords": [
+    "osr",
+    "ui",
+    "stock",
+    "canvas"
+  ],
+  "author": "cava.zhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oscava/osr-ui-stock/issues"
+  },
+  "homepage": "https://github.com/oscava/osr-ui-stock#readme"
+}
