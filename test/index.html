@@ -22,6 +22,7 @@
 			<span id="close">Close</span>
 			<span id="high">High</span>
 			<span id="low">Low</span>
+			<span id="volume">Volume</span>
 			<!-- <span id="time">Time</span> -->
 		</div>
 	</body>
@@ -35,13 +36,15 @@
 			this.className = window[this.id].isShow ? "show" : "disshow";
 		}
 		var stage = new Stock(document.getElementById("example"));
-		var mainscreen = stage.addScreen("main");
+		var mainscreen = stage.addScreen("main",{ width:800, height:400 },{ x:0,y:0});
+		var volumescreen = stage.addScreen("volume",{ width:800, height:50},{ x:0, y:450},{min:0});
 		//var timescreen = stage.addScreen("time");
-		window.kline = mainscreen.addPrint("kline",{ bear: "green", bull:"red" });
+		window.kline = mainscreen.addPrint("kline",{ bear: { color: "greenyellow" }, bull:{ color:"red"} ,weight:1 });
 		window.low = mainscreen.addPrint("line",{ color:"#fff" },["low"]);
 		window.high = mainscreen.addPrint("line",{ color:"red" },["high"]);
 		window.close = mainscreen.addPrint("line",{ color:"blue" },["close"]);
 		window.open = mainscreen.addPrint("line",{ color:"green" },["open"]);
+		window.volume = volumescreen.addPrint("stick",{ bear:"green",bull:"red" , color:"#fff"},["volume"]);
 		//window.time = timescreen.addPrint("line",{ color:"#fff" },["time"]);
 		
 		$("kline").addEventListener("click",fn);
@@ -49,6 +52,7 @@
 		$("low").addEventListener("click",fn);
 		$("open").addEventListener("click",fn);
 		$("close").addEventListener("click",fn);
+		$("volume").addEventListener("click",fn);
 		//$("time").addEventListener("click",fn);
 		
 		
@@ -58,7 +62,6 @@
 		var index = 0;
 		stage.draw(index);
 		document.body.addEventListener("keydown",function(e){
-			console.log(e.keyCode);
 			if(39 === e.keyCode){
 				index++;
 			}else if(37 === e.keyCode){
@@ -68,8 +71,10 @@
 				stage.draw(index);
 			}else if(38 === e.keyCode){
 				mainscreen.increaseItem();
+				volumescreen.increaseItem();
 			}else if(40 === e.keyCode){
 				mainscreen.decreaseItem();
+				volumescreen.decreaseItem();
 			}
 			stage.draw(index);
 		})
