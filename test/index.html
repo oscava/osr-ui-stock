@@ -44,7 +44,7 @@
 		window.high = mainscreen.addPrint("line",{ color:"red" },["high"]);
 		window.close = mainscreen.addPrint("line",{ color:"blue" },["close"]);
 		window.open = mainscreen.addPrint("line",{ color:"green" },["open"]);
-		window.volume = volumescreen.addPrint("stick",{ bear:"green",bull:"red" , color:"#fff"},["volume"]);
+		window.volume = volumescreen.addPrint("volume",{ bear:{ color: "greenyellow", weight:1 }, bull:{ color:"red",weight:1}, color:"#fff"});
 		//window.time = timescreen.addPrint("line",{ color:"#fff" },["time"]);
 		
 		$("kline").addEventListener("click",fn);
