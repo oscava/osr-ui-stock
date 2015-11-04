@@ -65,9 +65,7 @@
 			if(39 === e.keyCode){
 				index++;
 			}else if(37 === e.keyCode){
-				if(--index < 0 ){
-					index = 0;
-				}
+				--index;
 				stage.draw(index);
 			}else if(38 === e.keyCode){
 				mainscreen.increaseItem();
