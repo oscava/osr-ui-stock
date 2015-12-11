@@ -12,17 +12,27 @@
 		</style>
 	</head>
 	<body>
-		<canvas id="example" height="500" width="800" style="background-color:#000;">
+		<canvas id="example" height="500" width="1300" style="background-color:#000;">
 			
 		</canvas>
 		<div>你可以尝试一下↑↓←→</div>
 		<div>
 			<span id="kline">Kline</span>
-			<span id="open">Open</span>
+			<!-- <span id="open">Open</span>
 			<span id="close">Close</span>
 			<span id="high">High</span>
-			<span id="low">Low</span>
+			<span id="low">Low</span> -->
 			<span id="volume">Volume</span>
+			<span id="colorBar">colorBar</span>
+			<span id="Bing">Bing</span>
+			<span id="Jiang">Jiang</span>
+			<span id="Yali">Yali</span>
+			<span id="Shuai">Shuai</span>
+			<span id="FangXiang">FangXiang</span>
+			<span id="Duoqianfeng">Duoqianfeng</span>
+			<span id="Kongqianfeng">Kongqianfeng</span>
+			<span id="Duotou">Duotou</span>
+			<span id="Kongtou">Kongtou</span>
 			<!-- <span id="time">Time</span> -->
 		</div>
 	</body>
@@ -36,28 +46,61 @@
 			this.className = window[this.id].isShow ? "show" : "disshow";
 		}
 		var stage = new Stock(document.getElementById("example"));
-		var mainscreen = stage.addScreen("main",{ width:800, height:400 },{ x:0,y:0});
-		var volumescreen = stage.addScreen("volume",{ width:800, height:50},{ x:0, y:450},{min:0});
+		var mainscreen = stage.addScreen("main",{ width:1300, height:400 },{ x:0,y:0});
+		var volumescreen = stage.addScreen("volume",{ width:1300, height:50},{ x:0, y:450},{min:0});
+		var colorBarScreen = stage.addScreen("bar",{ width:1300, height:50},{ x:0, y:400},{min:0});
 		//var timescreen = stage.addScreen("time");
 		window.kline = mainscreen.addPrint("kline",{ bear: { color: "greenyellow" }, bull:{ color:"red"} ,weight:1 });
-		window.low = mainscreen.addPrint("line",{ color:"#fff" },["low"]);
-		window.high = mainscreen.addPrint("line",{ color:"red" },["high"]);
-		window.close = mainscreen.addPrint("line",{ color:"blue" },["close"]);
-		window.open = mainscreen.addPrint("line",{ color:"green" },["open"]);
+		//window.low = mainscreen.addPrint("line",{ color:"#fff" },["low"]);
+		//window.high = mainscreen.addPrint("line",{ color:"red" },["high"]);
+		//window.close = mainscreen.addPrint("line",{ color:"blue" },["close"]);
+		//window.open = mainscreen.addPrint("line",{ color:"green" },["open"]);
+		window.Bing = mainscreen.addPrint("line",{ color:"#8899cc" },["Bing"]);
+		window.Jiang = mainscreen.addPrint("line",{ color:"#0088cc" },["Jiang"]);
+		window.Yali = mainscreen.addPrint("line",{ color:"#ccc" },["Yali"]);
+		window.Shuai = mainscreen.addPrint("line",{ color:"greenyellow" },["Shuai"]);
+		window.FangXiang = mainscreen.addPrint("line",{ color:"red" },["FangXiang"]);
 		window.volume = volumescreen.addPrint("volume",{ bear:{ color: "greenyellow", weight:1 }, bull:{ color:"red",weight:1}, color:"#fff"});
+		window.Duotou = volumescreen.addPrint("line",{ bear:{ color: "greenyellow", weight:1 }, bull:{ color:"red",weight:1}, color:"red"},["Duotou"]);
+		window.Kongtou = volumescreen.addPrint("line",{ bear:{ color: "greenyellow", weight:1 }, bull:{ color:"red",weight:1}, color:"green"},["Kongtou"]);
+        window.colorBar = colorBarScreen.addPrint("colorBar",{ bear: { color: "greenyellow", width: 1}, bull: { color: "red", width: 1}, color:"#fff" },["zl","qs"]);
+        window.Duoqianfeng = colorBarScreen.addPrint("line",{ bear: { color: "greenyellow", width: 1}, bull: { color: "red", width: 1}, color:"#ff8888" },["Duoqianfeng"]);
+        window.Kongqianfeng = colorBarScreen.addPrint("line",{ bear: { color: "greenyellow", width: 1}, bull: { color: "red", width: 1}, color:"#00ff00" },["Kongqianfeng"]);
 		//window.time = timescreen.addPrint("line",{ color:"#fff" },["time"]);
 		
 		$("kline").addEventListener("click",fn);
-		$("high").addEventListener("click",fn);
-		$("low").addEventListener("click",fn);
-		$("open").addEventListener("click",fn);
-		$("close").addEventListener("click",fn);
+		//$("high").addEventListener("click",fn);
+		//$("low").addEventListener("click",fn);
+		//$("open").addEventListener("click",fn);
+		//$("close").addEventListener("click",fn);
 		$("volume").addEventListener("click",fn);
+		$("colorBar").addEventListener("click",fn);
+		$("Bing").addEventListener("click",fn);
+		$("Jiang").addEventListener("click",fn);
+		$("Yali").addEventListener("click",fn);
+		$("Shuai").addEventListener("click",fn);
+		$("FangXiang").addEventListener("click",fn);
+		$("Duoqianfeng").addEventListener("click",fn);
+		$("Kongqianfeng").addEventListener("click",fn);
+		$("Duotou").addEventListener("click",fn);
+		$("Kongtou").addEventListener("click",fn);
 		//$("time").addEventListener("click",fn);
 		
-		
+		console.log(myData.canvas);
 		myData.stock.forEach(function(item,index){
-			stage.addData(item);
+            var zl = myData.canvas["主力"].position[index];
+            var qs = myData.canvas["趋势"].position[index];
+            var Bing = myData.canvas["兵"].position[index];
+            var Jiang = myData.canvas["将"].position[index];
+            var Yali = myData.canvas["压力"].position[index];
+            var Shuai = myData.canvas["帅"].position[index];
+            var FangXiang = myData.canvas["方向"].position[index];
+            var Duoqianfeng = myData.canvas["多前锋"].position[index];
+            var Kongqianfeng = myData.canvas["空前锋"].position[index];
+            var Duotou = myData.canvas["多头"].position[index];
+            var Kongtou = myData.canvas["空头"].position[index];
+            var sub = { Bing:Bing, Jiang:Jiang, time: item.time, volume: item.volume, high: item.high, low: item.low, open:item.open,low:item.low, zl: zl, qs: qs, volume: item.volume, close: item.close ,Yali:Yali, Shuai: Shuai,FangXiang:FangXiang ,Duoqianfeng:Duoqianfeng,Kongqianfeng:Kongqianfeng,Duotou:Duotou,Kongtou:Kongtou};
+			stage.addData(sub);
 		});
 		var index = 0;
 		stage.draw(index);
@@ -70,9 +113,11 @@
 			}else if(38 === e.keyCode){
 				mainscreen.increaseItem();
 				volumescreen.increaseItem();
+				colorBarScreen.increaseItem();
 			}else if(40 === e.keyCode){
 				mainscreen.decreaseItem();
 				volumescreen.decreaseItem();
+				colorBarScreen.decreaseItem();
 			}
 			stage.draw(index);
 		})
